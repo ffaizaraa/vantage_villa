@@ -92,6 +92,15 @@
                   <div class="form-group">
 		                <input disabled type="text" id="namaCottage" class="form-control" name="namaCottage" required="required" value="<?= $val->namaCottage; ?>">
 		              </div>
+									<!-- <div class="form-group">
+										<input type="text" value="1" name="status">
+									</div> -->
+									<div class="form-group">
+									<input type="text" value="<?= $stok->idCottage ?>" name="idCottage" hidden/>
+									</div>
+
+									<!-- <?= var_dump($stok) ?> -->
+
 		              <div class="form-group">
 		                <input type="submit" value="Booking" class="btn btn-primary py-3 px-5">
 		              </div>
@@ -115,8 +124,6 @@
                 <a href="#" class="tag-cloud-link">drinks</a>
               </div>
             </div>
-
-            
           </div>
         </div>
       </div>
