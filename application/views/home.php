@@ -140,7 +140,7 @@
               	</div>
               </div>
               <div class="media-body p-2 mt-2">
-                <h3 class="heading mb-3">25/7 Front Desk</h3>
+                <h3 class="heading mb-3">24/7 Front Desk</h3>
                 <p>Front desk is an area or part of the villa that functions as a central point of service to guests. The front desk is often the first location accessed by guests upon arrival at the villa.</p>
               </div>
             </div>      
@@ -198,7 +198,7 @@
     		<div class="row">
 			<?php foreach($cottage as $val){?>
 				<?php if ($val->jumlahKamar < 0): ?>
-    <!-- Your HTML or CodeIgniter view code here when jumlahKamar is less than 0 -->
+    		<!-- Tampilan ketika jumlahKamar kurang dari 0 -->
 				<?php elseif ($val->jumlahKamar > 0): ?>
 				<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 									<div class="room">
@@ -210,17 +210,13 @@
 										<div class="text p-3 text-center">
 											<h3 class="mb-3"><?php echo $val->namaCottage;?></h3>
 											<p><span class="price mr-2">Rp <?php echo number_format ($val->harga,0,',','.');?></span> <span class="per">per night</span></p>
+											<p class="pt-1">Stock : <?php echo $val -> jumlahKamar;?><p>
 											<hr>
 											<p class="pt-1"><a href="<?php echo site_url('Home/detail_cottage/'.$val->idCottage); ?>" class="btn-custom">View Room Details <span class="icon-long-arrow-right"></span></a></p>
 										</div>
 									</div>
 								</div>
-					<!-- Your HTML or CodeIgniter view code here when jumlahKamar is equal to 0 -->
 				<?php endif; ?>
-
-
-    			
-
 				<?php } ?>
     		</div>
     	</div>
