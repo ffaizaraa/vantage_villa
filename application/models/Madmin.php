@@ -37,6 +37,15 @@ class Madmin extends CI_Model{
         $this->db->delete($table);
     }
  
+	// public function all_datatransaksi()
+	// {
+	// 	$this->db->select('*');
+	// 	$this->db->from('tbl_transaksi');
+	// 	$this->db->join('tbl_cottage', 'tbl_transaksi.idCottage = tbl_cottage.idCottage', 'left');
+	// 	$this->db->join('tbl_penyewa', 'tbl_penyewa.NIK = tbl_transaksi.NIK', 'left');
+	// 	return $this->db->get()->result();
+	// }
+
 	public function laporanDetTrans()
 	{
 		$this->db->from('tbl_transaksi');
@@ -53,6 +62,26 @@ class Madmin extends CI_Model{
 		 $this->db->where('tbl_cottage.idCottage', $idCottage);
 		return $this->db->get()->row();
 	}
+
+
+	// public function kurangiStokCottage($idCottage) {
+    //     // Fungsi untuk mengurangkan stok cottage
+    //     $this->db->where('idCottage', $idCottage);
+    //     $stok_sekarang = $this->db->get('tbl_cottage')->row()->jumlahKamar;
+
+    //     // Kurangi stok
+    //     $stok_baru = $stok_sekarang - 1; // Ubah angka 1 sesuai dengan jumlah stok yang ingin dikurangkan
+    //     $this->db->update('tbl_cottage', array('jumlahKamar' => $stok_baru), array('idCottage' => $idCottage));
+    // }
+
+	// public function getCottage()
+	// {
+	// 	$this->db->select('idCottage');
+	// 	$this->db->from('tbl_cottage');
+    //     $this->db->join('tbl_', 'tbl_kategori.id_kategori = tbl_barang.id_kategori', 'left');
+    //     $this->db->where('id_barang', $id_barang);
+    //     return $this->db->get()->row();
+	// }
 
 	public function all_datacottage()
 	{
@@ -202,4 +231,34 @@ class Madmin extends CI_Model{
     $this->db->where('tbl_transaksi.id_transaksi', $id_transaksi);
     return $this->db->get('tbl_transaksi')->row_array();
 }
+
+	public function get_last_penyewa()
+	{
+		$this->db->select('*');
+    $this->db->from('tbl_penyewa');
+    $this->db->join('tbl_cottage', 'tbl_penyewa.idCottage = tbl_cottage.idCottage', 'left');
+    $this->db->order_by('tbl_penyewa.id_penyewa', 'DESC');
+    $this->db->limit(1);
+
+    $query = $this->db->get();
+
+    return $query->row();
+	}
+
+
+	public function update_payment_status($id_penyewa, $new_status) {
+    $this->db->where('id_penyewa', $id_penyewa);
+    $this->db->update('tbl_penyewa', array('status' => $new_status));
+}
+
+
+	public function laporan() {
+		$this->db->select('*');
+		$this->db->from('tbl_penyewa');
+		$this->db->join('tbl_cottage','tbl_penyewa.idCottage = tbl_cottage.idCottage');
+		$this->db->where('status', 1);
+		return $this->db->get()->result();
+	}
+
+	
 }
