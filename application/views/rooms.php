@@ -5,7 +5,7 @@
             <h2 class="mb-4">Our Cottages</h2>
           </div>
         </div>    		
-		    	<div class="row">
+		<div class="row">
 					<?php foreach($cottage as $val){?>
 		    			<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 		    				<div class="room">
@@ -22,6 +22,7 @@
 		    							<li><span>Size:</span> 24 sqm</li>
 		    							<li><span>View:</span> Mountains View</li>
 		    							<li><span>Bed:</span> 1 King Bed</li>
+										<li><span>Stock:</span> <?php echo $val->jumlahKamar;?></li>
 		    						</ul>
 		    						<hr>
 		    						<p class="pt-1"><a href="<?php echo site_url('Home/detail_cottage/'.$val->idCottage); ?>" class="btn-custom">Book Now <span class="icon-long-arrow-right"></span></a></p>
